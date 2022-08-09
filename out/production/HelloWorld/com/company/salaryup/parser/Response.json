@@ -1,0 +1,91 @@
+Response{
+  header=Header{
+  filename=
+  '0001111222222220224093606.SIF',
+  status=
+  'FAILED'
+}, body=Body{
+records=[
+Record
+{
+recordId=
+'null',
+statusPair=null,
+generalErrors=null,
+errorPair=ErrorPair
+{
+typePair=TypePair
+{
+type=
+'EVP',
+lineNumber=11
+},
+lineNumber=0,
+error=
+'Income Variable in EDR is not equal to the total Allowances in EVP'
+}
+},
+Record
+{
+recordId=
+'null',
+statusPair=null,
+generalErrors=null,
+errorPair=ErrorPair
+{
+typePair=TypePair
+{
+type=
+'EVP',
+lineNumber=11
+},
+lineNumber=0,
+error=
+'Income Variable in EDR is not equal to the total Allowances in EVP'
+}
+},
+Record
+{
+recordId=
+'null',
+statusPair=null,
+generalErrors=null,
+errorPair=ErrorPair
+{
+typePair=TypePair
+{
+type=
+'SCR',
+lineNumber=8
+},
+lineNumber=0,
+error=
+'Total Salary in SCR ( 1100.00 ) doesn'
+t
+match
+with
+the
+sum
+EDR
+total
+(
+1000.00)
+'}}, Record{recordId='
+null
+', statusPair=null, generalErrors=null, errorPair=ErrorPair{typePair=TypePair{type='
+SCR
+', lineNumber=8}, lineNumber=0, error='
+Total
+Salary
+in
+SCR
+(
+1100.00
+)
+doesn
+'t match with the sum EDR total ( 1000.00)'
+}
+}
+]
+}
+}

@@ -1,0 +1,42 @@
+	private Date findCutOffTimeFromConfig(SecureUser sUser) {
+
+		String timeFromOcbConfig = null;
+		Date currentDate = null;
+
+		int cutoffHour = 0;
+		int cutoffMinute = 0;
+		DateTime cutoffDate = null;
+
+		try {
+			 timeFromOcbConfig = integrationConfig.getPropertyValue(SalaryUploadConstants.OCBCONFIG_PROPERTY_BAH_CUTOFF_TIME);
+			 currentDate = AffiliateUtil.getCurrentClientDate(Integer.parseInt(AffiliateUtil.NBK_BAH_AFFILIATE_ID));
+
+			 cutoffHour = Integer.parseInt(timeFromOcbConfig.split(":")[0]);
+			 cutoffMinute = Integer.parseInt(timeFromOcbConfig.split(":")[1]);
+
+			 if(cutoffHour <= 0 && cutoffHour >= 24) {
+				 throw new SalaryUploadConfigException("BAH - findCutOffTimeFromConfig()", 0, "Hours should be between 0-24");
+			 }
+
+			 if(cutoffMinute <= 0 && cutoffMinute >= 60) {
+				 throw new SalaryUploadConfigException("BAH - findCutOffTimeFromConfig()", 0, "Minutes should be between 0-60 format");
+			 }
+
+			 cutoffDate = new DateTime(currentDate, sUser.getLocale());
+			 cutoffDate.set(Calendar.HOUR , cutoffHour);
+			 cutoffDate.set(Calendar.MINUTE , cutoffMinute);
+			 cutoffDate.set(Calendar.SECOND , 0);
+			 cutoffDate.set(Calendar.MILLISECOND , 0);
+
+
+		}catch (Exception e) {
+			logger.error("salary_upload : BAH Problem in getting cutofftime from ocb_config / date conversion / parsing | Property : {}",
+					SalaryUploadConstants.OCBCONFIG_PROPERTY_BAH_CUTOFF_TIME, e);
+			//TODO: Should we fail (throw exception / send error to user) ?
+		}
+
+		logger.info("salary_upload : BAH Cut off hour : {} | Cut off minute : {}  | Cut off date : {} | ocb config property {}",
+				cutoffHour, cutoffMinute, cutoffDate.getTime(), SalaryUploadConstants.OCBCONFIG_PROPERTY_BAH_CUTOFF_TIME);
+
+		return cutoffDate.getTime();
+	}

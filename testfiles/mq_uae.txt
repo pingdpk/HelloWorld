@@ -1,0 +1,30 @@
+
+				salaryUpload = new SalaryUpload();
+				salaryUpload.setUploadId(resultset.getInt("UPLOAD_ID"));
+				salaryUpload.setBusid(resultset.getString("BUSINESS_ID"));
+				salaryUpload.setUploadType(resultset.getString("UPLOAD_TYPE"));
+				salaryUpload.setFileType(resultset.getString("FILE_TYPE"));
+				salaryUpload.setReferenceName(resultset.getString("REFERENCE_NAME"));
+				salaryUpload.setSubmittedBy(resultset.getString("UPLOADED_BY"));
+				salaryUpload.setSubmitDate(resultset.getString("UPLOADED_ON"));
+				salaryUpload.setSubmittedOn(resultset.getString("UPLOADED_ON"));
+				salaryUpload.setScheduledDate(resultset.getString("SCHEDULED_DATE"));
+				salaryUpload.setValueDate(resultset.getString("VALUE_DATE"));
+				salaryUpload.setValueTime(resultset.getString("VALUE_TIME"));
+				salaryUpload.setStatus(resultset.getString("UPLOAD_STATUS"));
+				salaryUpload.setRemarks(resultset.getString("UPLOAD_DESC"));
+				salaryUpload.setFileName(resultset.getString("FILE_NAME"));
+				salaryUpload.setDebitAccount(resultset.getString("DEBIT_ACCOUNT"));
+				salaryUpload.setDebitAccountCurrency(resultset.getString("DEBIT_ACCOUNT_CURRENCY"));
+				salaryUpload.setDebitAmount(resultset.getString("TOTAL_DEBIT_AMOUNT"));
+				salaryUpload.setAmount(resultset.getString("TOTAL_DEBIT_AMOUNT"));
+				salaryUpload.setDebitAmountCurrency(resultset.getString("DEBIT_CURRENCY"));
+				salaryUpload.setAmount(new Currency(salaryUpload.getDebitAmount(),salaryUpload.getDebitAmountCurrency(),Locale.getDefault()));
+				salaryUpload.setChargeAccount(resultset.getString("CHARGE_ACCOUNT"));
+				salaryUpload.setChargeAmount(resultset.getString("CHARGE_AMOUNT"));
+				salaryUpload.setNumberOfRecords(resultset.getInt("RECORD_COUNT"));
+				salaryUpload.setTrackingID(resultset.getString("TRACKING_NUMBER")); //TODO Add those columns related to UAE too? (need to check those are reading/required or not.
+				if(salaryUpload.getSubmittedBy() != null){
+					salaryUpload.setUserName(findUserForId(Integer.parseInt(salaryUpload.getSubmittedBy())));
+				}
+				salaryUploads.add(salaryUpload);
