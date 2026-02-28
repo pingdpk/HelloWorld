@@ -1,0 +1,13 @@
+.idea/
+/target/
+
+.eclipse/
+.classpath
+.project
+.settings/
+*.iml
+*.ipr
+*.iws
+.vscode/
+*.swp
+
